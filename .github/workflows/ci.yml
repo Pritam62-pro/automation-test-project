@@ -24,6 +24,9 @@ jobs:
           pip install pytest
           # Jodi tomar requirements.txt thake, tahole nicher line tar theke # soriye dao
           # pip install -r requirements.txt
+          # 3. Dorkari package gulo install korbe
+          python -m pip install --upgrade pip
+          pip install pytest selenium
 
       # 4. Tomar asol test gulo run korbe
       - name: Run Pytest
