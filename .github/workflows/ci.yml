@@ -1,19 +1,30 @@
-name: Automation Test CI
+name: Python Automation Test CI
 
-# Code push korlei ei workflow ta chalabe
 on: [push]
 
 jobs:
-  test-my-code:
-    runs-on: ubuntu-latest # GitHub er ekta virtual Linux computer
+  test-my-python-code:
+    runs-on: ubuntu-latest
 
     steps:
-      # 1. Tomar code ta oi computer e niye asbe
-      - name: Get the code
+      # 1. Tomar code ta GitHub-er virtual machine-e anbe
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      # 2. Test run korbe
-      - name: Run Automation Tests
+      # 2. Python install korbe
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # 3. Dorkari package gulo install korbe (jemon pytest)
+      - name: Install Dependencies
         run: |
-          echo "Tomar automation test gulo start hocche..."
-          echo "Test perfectly pass koreche! ✅"
+          python -m pip install --upgrade pip
+          pip install pytest
+          # Jodi tomar requirements.txt thake, tahole nicher line tar theke # soriye dao
+          # pip install -r requirements.txt
+
+      # 4. Tomar asol test gulo run korbe
+      - name: Run Pytest
+        run: pytest
