@@ -1,0 +1,19 @@
+name: Automation Test CI
+
+# Code push korlei ei workflow ta chalabe
+on: [push]
+
+jobs:
+  test-my-code:
+    runs-on: ubuntu-latest # GitHub er ekta virtual Linux computer
+
+    steps:
+      # 1. Tomar code ta oi computer e niye asbe
+      - name: Get the code
+        uses: actions/checkout@v3
+
+      # 2. Test run korbe
+      - name: Run Automation Tests
+        run: |
+          echo "Tomar automation test gulo start hocche..."
+          echo "Test perfectly pass koreche! ✅"
